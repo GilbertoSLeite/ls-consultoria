@@ -1,0 +1,15 @@
+# Sctructure Folders
+######################
+node_modules
+.vscode
+
+#Logs, database and big files
+######################
+*.log
+*.sql
+*.sqlite
+*.yml
+
+#Configurations and security data
+######################
+*.env
