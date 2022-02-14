@@ -1,18 +1,15 @@
-const statusCodes = require("../common/http-response/status-code");
-const getMethod = require("../interface/http/get/request-get");
+const validatingStatusCodes = require("../common/http-response/validating-status-code");
+const requestData = require("./request-data");
 
 const objectsRoute = async (app) => {
-    try {
-        const requestData = { 
-            get: await getMethod(app)
-        };
-    
-        app.use(function(req, res, next){ 
-            requestData[req.headers.request_method];
-        });   
-
+    try {    
+        app.use(function(req, res, next){  
+            const url = req.url;   
+            const method = req.method;
+            requestData(url, method)
+        });
     } catch (error) {
-        return statusCodes(500, error, 'getMethod');       
+        return validatingStatusCodes(500, error, 'getMethod');       
     };
 };
 

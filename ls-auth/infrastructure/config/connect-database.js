@@ -8,13 +8,13 @@ module.exports = new Sequelize(
     enverioment.PASSWORD,
     {
       host: enverioment.HOST,
-      dialect: enverioment.dialect,
+      dialect: enverioment.DIALECT,
       operatorsAliases: 0,
       pool: {
-        max: enverioment.pool.max,
-        min: enverioment.pool.min,
-        acquire: enverioment.pool.acquire,
-        idle: enverioment.pool.idle,
+        max: enverioment.POOL_MAX,
+        min: enverioment.POOL_min,
+        acquire: enverioment.POOL_acquire,
+        idle: enverioment.POOL_idle,
       },
     }
   );

@@ -1,15 +1,18 @@
-const statusCodes = require('../../../common/http-response/status-code');
-const router = require('express').Router();  
+const express = require('express');
+const validatingStatusCodes = require('../../../common/http-response/validating-status-code');
+const app = express();
+const router = express.Router();  
 
-const getMethod = async (app) => { 
+const getMethod = async (url) => { 
     try {
-        router.get("/", (resquest, response) => {
+        const urlToString = url.toString();
+        router.get(urlToString, (resquest, response) => {
             response.status(200).render("index");           
         });
     
-        app.use("/", router);        
+        app.use(urlToString, router);        
     } catch (error) {
-        return statusCodes(500, error, 'getMethod')
+        return validatingStatusCodes(500, error, 'getMethod')
     }
 }
 
