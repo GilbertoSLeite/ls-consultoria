@@ -9,7 +9,7 @@ Para criação das API, estou utilizando o <a href="https://expressjs.com/pt-br/
 * [2. Autenticação](#ls-autentica%C3%A7%C3%A3o)
 * [2.1 Estrutura das Pastas](#estrutura-das-pastas)
 
-<br><br><br>
+<br>
 
 ## Das Versões
 
@@ -29,16 +29,19 @@ Para criação das API, estou utilizando o <a href="https://expressjs.com/pt-br/
 
 <details>
 <sumary>Modelagem DDD(Domain-Driven Design)</sumary>
-
+<br><br>
 Domain-Driven Design é um conjunto de princípios para projeto de Software, a intenção é desenvolver um software, cuja o seu desenho, esteja diretamente centrado na regra de negócio.
 O Microserviço ls-auth tem como objeto central, a gestão do usuário, tendo como princípios: 
 - Cadastro do Usuário e Senha
 - Criptografia da Senha
 - Criação do Hashid
+<br><br>
 <sumary>Sobre o Hexagonal</sumary>
+<br><br>
 Com o intuito de dividir a aplicação em camadas de acordos com suas responsbilidades e focando sempre na camada de regra de negócios, onde estará toda nossa regra de negócio. Partindo do princípio da "Clean Architecture" divimos o projeto em grupos principais: 
 - Domínio(Regra de Negócio);
 - Infraestrutura(Ambiente de Dados);
 - Interface(Ambiente de Rotas e Entradas de "Request");
 - Controllers(Ambiente de Análise de Contrato de Responsabilidades);
+<br><br>
 </details>
