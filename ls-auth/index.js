@@ -6,6 +6,9 @@ const app = express();
 require("dotenv").config();
 const enverioment = process.env;
 
+const dataBase = require('./infrastructure/database/index');
+dataBase.sequelize.sync();
+
 app.set("views", join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({

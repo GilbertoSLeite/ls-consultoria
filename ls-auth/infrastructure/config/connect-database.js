@@ -2,21 +2,15 @@ const Sequelize = require('sequelize');
 require("dotenv").config();
 const enverioment = process.env;
 
-module.exports = new Sequelize(
-    enverioment.DB,
-    enverioment.USER,
-    enverioment.PASSWORD,
-    {
+module.exports = new Sequelize(enverioment.DB, enverioment.USER_DATABASE, enverioment.PASSWORD_DATABASE, {
       host: enverioment.HOST,
       dialect: enverioment.DIALECT,
       operatorsAliases: 0,
       pool: {
-        max: enverioment.POOL_MAX,
-        min: enverioment.POOL_min,
-        acquire: enverioment.POOL_acquire,
-        idle: enverioment.POOL_idle,
+        max: parseInt(enverioment.POOL_MAX),
+        min: parseInt(enverioment.POOL_MIN),
+        acquire: parseInt(enverioment.POOL_ACQUIRE),
+        idle: parseInt(enverioment.POOL_IDLE),
       },
     }
   );
-
-module.exports = sequelize;
