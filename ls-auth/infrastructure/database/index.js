@@ -7,6 +7,6 @@ const dataBase = {};
 dataBase.Sequelize = Sequelize;
 dataBase.sequelize = sequelize;
 
-dataBase.cadastros_imagens = require("./schema/cadastro-usuario")(sequelize, Sequelize);
+dataBase.cadastro_usuario = require("./schema/cadastro-usuario")(sequelize, Sequelize);
 
 module.exports = dataBase;
