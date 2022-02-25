@@ -6,12 +6,12 @@ const server = require('http');
 const successResponse = require('./success-response');
 const errorResponse = require('./error-response');
 
-const validatingStatusCodes = async (code, body, placeHappened) => {
+const validatingStatusCodes = async (code, body, placeHappened, response, request) => {
     try {
-        const okStatus = (code === 200 && await successResponse(body, placeHappened));
-        const badRequest = (code === 400 && await errorResponse(400, body, placeHappened));
-        const notFound = (code === 404 && await errorResponse(404, body, placeHappened));
-        const internalError = (code === 500 && await errorResponse(500, body, placeHappened));
+        const okStatus = (code === 200 && await successResponse(body, placeHappened, response, request));
+        const badRequest = (code === 400 && await errorResponse(400, body, placeHappened, response, request));
+        const notFound = (code === 404 && await errorResponse(404, body, placeHappened, response, request));
+        const internalError = (code === 500 && await errorResponse(500, body, placeHappened, response, request));
         const resultFinal = (okStatus || badRequest || notFound || internalError);
         return resultFinal;
     } catch (error) {

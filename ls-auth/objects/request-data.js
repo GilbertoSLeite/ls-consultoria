@@ -1,13 +1,17 @@
+const express = require('express');
+const router = express.Router();  
 const validatingStatusCodes = require("../common/http-response/validating-status-code");
-const getMethod = require("../interface/http/get/request-get");
+const controllerScreening = require('../controllers/controller-screening');
 
-const requestData = async (url, method) => {
-    try {
-        const data = {
-        "GET": await getMethod(url),
-        "POST": await getMethod(url)
-        }
-        data[method];        
+const requestData = async (app) => {
+    try { 
+        app.use((request, response, next) =>{
+            const data = {
+                "GET": () => response.status(200).render("index"),
+                "POST": () => controllerScreening(request, response)
+                };
+            data[request.method.toString()]?.() ?? validatingStatusCodes(500, `Não foi possível encontrar o metódo ${request.method.toString()} solicitado.`, 'requestData', response, request);
+        });
     } catch (error) {
         return validatingStatusCodes(500, error, 'getMethod');         
     }

@@ -1,26 +1,25 @@
 /* eslint-disable camelcase */
 const formatDate = require('moment');
 const today = formatDate();
-const date = today.format('YYYY').concat('-', today.format('MM')).concat('-', today.format('D'));
-const server = require('http')
+const date = today.format('DD/MM/YYYY');
 
-const errorResponse = async (statusCode, body, localError) => {
+const errorResponse = async (statusCode, body, localError, response, request) => {
     try {
-        server.createServer((request, response) => response.status(statusCode).send({
+        response.status(statusCode).send({
             statusCode: statusCode,
-            body: `Ocorreu um Erro durante identificação dos aniversarientes ${date} na função ${localError} - ${JSON.stringify(body, null, 2)}`,
+            body: `Ocorreu o erro: ${JSON.stringify(body, null, 2)}, durante o processo de login no dia ${date} na função ${localError}`,
             headers: {
                 'Access-Control-Allow-Origin': '*'
             }
-        }));
-    } catch (error) {
-        server.createServer((request, response) => response.status(500).send({
+        })
+    } catch (error) { 
+        response.status(500).send({
             statusCode: 500,
-            body: `Ocorreu um Erro durante identificação dos aniversarientes ${date} na função errorResponse - ${error}`,
+            body: `Ocorreu um erro: ${error}, durante a execução no dia ${date} na função errorResponse.`,
             headers: {
                 'Access-Control-Allow-Origin': '*'
             }
-        }));     
+        })
     };
 };
 
